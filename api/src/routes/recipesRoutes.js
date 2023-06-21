@@ -1,20 +1,20 @@
 const {Router} = require("express");
 
+const {
+    getRecipeById,
+    getAllRecipes,
+    postNewRecipe
+} = require("../handlers/recipeHandlers");
+
 const recipesRoute = Router();
 
-recipesRoute.get("/", (req, res) =>{
-    res.send("NIY: LISTADO DE RECIPES")
-})
 
-recipesRoute.get("/:idRecipe", (req, res) => {
-    const {idRecipe} = req.params
-    res.send("NIY: DETALLE DE LA RECETA " + idRecipe)
-})
 
-recipesRoute.post("/", (req, res) => {
-    const {name, desc} = req.body;
-    res.send("NIY: CREACION DE NUEVA RECETA: " + name + desc);
-})
+recipesRoute.get("/:idRecipe", getRecipeById)
+
+recipesRoute.get("/", getAllRecipes)
+
+recipesRoute.post("/", postNewRecipe)
 
 
 module.exports = recipesRoute;
