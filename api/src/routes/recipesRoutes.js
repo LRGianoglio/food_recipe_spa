@@ -1,20 +1,20 @@
 const {Router} = require("express");
 
 const {
-    getRecipeById,
-    getAllRecipes,
-    postNewRecipe
+    getRecipe,
+    getRecipes,
+    postRecipe
 } = require("../handlers/recipeHandlers");
 
 const recipesRoute = Router();
 
 
 
-recipesRoute.get("/:idRecipe", getRecipeById)
+recipesRoute.get("/:idRecipe", getRecipe)
 
-recipesRoute.get("/", getAllRecipes)
+recipesRoute.get("/", getRecipes)
 
-recipesRoute.post("/", postNewRecipe)
+recipesRoute.post("/", postRecipe)
 
 
 module.exports = recipesRoute;

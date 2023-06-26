@@ -5,8 +5,8 @@ module.exports = (sequelize) => {
   // defino el modelo
   sequelize.define('Recipe', {
     id: {
-      type: DataTypes.INTEGER,
-      autoIncrement: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
     name: {
@@ -28,6 +28,10 @@ module.exports = (sequelize) => {
     step_by_step: {
       type: DataTypes.TEXT,
       allowNull: false
+    },
+    custom: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: true
     }
-  });
+  }, { timestamps: false });
 };

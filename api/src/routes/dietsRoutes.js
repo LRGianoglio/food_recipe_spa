@@ -1,9 +1,11 @@
 const {Router} = require("express");
 
+const {
+    getDiets
+} = require("../handlers/dietHandlers")
+
 const dietsRoutes = Router();
 
-dietsRoutes.use("/", (req, res) => {
-    res.send("NIY: LISTADO DE TIPOS DE DIETAS")
-})
+dietsRoutes.use("/", getDiets)
 
 module.exports = dietsRoutes;
