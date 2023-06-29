@@ -14,7 +14,6 @@ const getRecipe = async (req, res) =>{
 
 const getRecipes = async (req, res) =>{
     const {name} = req.query;
-    console.log(name);
     try {
         const recipes =
             (typeof name === "undefined")
