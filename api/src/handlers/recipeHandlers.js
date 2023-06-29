@@ -14,11 +14,12 @@ const getRecipe = async (req, res) =>{
 
 const getRecipes = async (req, res) =>{
     const {name} = req.query;
+    console.log(name);
     try {
         const recipes =
-            name
-                ? await getRecipesByName (name)
-                : await getAllRecipes
+            (typeof name === "undefined")
+                ? await getAllRecipes()
+                : await getRecipesByName (name)
         res.status(200).json(recipes);
     } catch (error) {
         res.status(400).json({error: error.message});
@@ -26,10 +27,10 @@ const getRecipes = async (req, res) =>{
 };
 
 const postRecipe = async (req, res) =>{
-    const {name, img, description, health_score, step_by_step} = req.body;
+    const {name, img, description, health_score, step_by_step, diets} = req.body;
     try {
-        const newRecipe = await createRecipe(name, img, description, health_score, step_by_step);
-        res.status(201).json(newRecipe);
+        await createRecipe(name, img, description, health_score, step_by_step, diets);
+        res.status(201).json({message: "Receta creada exitosamente!"});
     } catch (error) {
         res.status(400).json({error: error.message});
     }

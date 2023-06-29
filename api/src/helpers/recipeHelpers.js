@@ -1,4 +1,4 @@
-const recipeFormatter = (recipe) => {
+const detailedRecipeFormatter = (recipe) => {
     return {
         id: recipe.id,
         name: recipe.title,
@@ -11,6 +11,15 @@ const recipeFormatter = (recipe) => {
     }
 }
 
+const recipeFormatter = (recipe) => {
+    return {
+        id: recipe.id,
+        name: recipe.title,
+        img: recipe.image,
+    }
+}
+
 module.exports = {
-    recipeFormatter
+    recipeFormatter,
+    detailedRecipeFormatter
 }

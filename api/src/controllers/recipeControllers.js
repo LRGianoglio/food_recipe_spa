@@ -1,16 +1,27 @@
-const {Recipe} = require ("../db")
-const {Op} = require("sequelize");
+const {Recipe, Diet} = require ("../db")
+const {Op, where} = require("sequelize");
 const axios = require("axios");
-const { recipeFormatter } = require("../helpers/recipeHelpers");
+const { detailedRecipeFormatter, recipeFormatter } = require("../helpers/recipeHelpers");
 const { YOUR_API_KEY } = process.env;
 
-const createRecipe = async (name, img, description, health_score, step_by_step) => 
-    await Recipe.create({name, img, description, health_score, step_by_step});
+const createRecipe = async (name, img, description, health_score, step_by_step, diets) =>{
+    const newRecipe = await Recipe.create({name, img, description, health_score, step_by_step});
+
+    const dietInstances = await Diet.findAll({
+        where: {
+          name: {
+            [Op.in]: diets,
+          },
+        },
+    });
+
+    await newRecipe.addDiets(dietInstances);
+}
 
 const getRecipeById = async (id, source) =>{
     const recipe =
         source === "api"
-            ? recipeFormatter(
+            ? detailedRecipeFormatter(
                 (await axios.get(`https://api.spoonacular.com/recipes/${id}/information?apiKey=${YOUR_API_KEY}`))
                 .data)
             : await Recipe.findByPk(id);
@@ -18,27 +29,37 @@ const getRecipeById = async (id, source) =>{
 }
 
 const getRecipesByName = async (name) => {
-    // const database = await Recipe.findAll({
-    //     where: {
-    //         name: {
-    //             [Op.iLike]: `%${name}%`
-    //         }
-    //     }});
+    const databaseRecipe = await Recipe.findAll({
+        attributes: ["id", "name", "img"],
+        include: [Diet],
+        raw: true,
+        where: {[Op.iLike]: `%${name}%`}
+    });
 
-    const database = await Recipe.findAll();
+    const databaseRecipeWithDiets = databaseRecipe.map(recipe => ({
+        id: recipe.id,
+        name: recipe.name,
+        img: recipe.img,
+        diets: recipe.Diet.map(diet => diet.name)
+    }));
 
-    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch/?apiKey=${YOUR_API_KEY}`)).data.results
-    const apiFormatted = api.map(recipe => recipeFormatter(recipe));
+    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`)).data.results
+        .filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase()))
+        // .map(recipe => recipeFormatter(recipe));
 
-    const allRecipes = [...apiFormatted, ...database];
-
-    const res = allRecipes.filter(recipe => recipe.name.toLowerCase().includes(name));
-
-    return res;
+    return [...api, ...databaseRecipeWithDiets];
 }
 
 const getAllRecipes = async () => {
-    await Recipe.findAll();
+    const database = await Recipe.findAll({
+        attributes: ["id", "name", "img"],
+        raw: true
+    });
+
+    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`)).data.results
+        // .map(recipe => recipeFormatter(recipe));
+
+    return [...database, ...api]
 }
 
 module.exports = {
