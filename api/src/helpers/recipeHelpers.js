@@ -5,7 +5,7 @@ const detailedRecipeFormatter = (recipe) => {
         img: recipe.image,
         description: recipe.summary,
         health_score: recipe.healthScore,
-        step_by_step: recipe.instructions,
+        step_by_step: recipe.analyzedInstructions[0].steps.map(step => step.step),
         diets: recipe.diets,
         custom: false
     }

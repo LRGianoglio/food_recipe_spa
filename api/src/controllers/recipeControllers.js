@@ -43,7 +43,7 @@ const getRecipesByName = async (name) => {
         diets: recipe.Diet.map(diet => diet.name)
     }));
 
-    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`)).data.results
+    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)).data.results
         .filter(recipe => recipe.name.toLowerCase().includes(name.toLowerCase()))
         .map(recipe => recipeFormatter(recipe));
 
@@ -56,7 +56,7 @@ const getAllRecipes = async () => {
         raw: true
     });
 
-    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true`)).data.results
+    const api = (await axios.get(`https://api.spoonacular.com/recipes/complexSearch?apiKey=${YOUR_API_KEY}&addRecipeInformation=true&number=100`)).data.results
         .map(recipe => recipeFormatter(recipe));
 
     return [...database, ...api]
