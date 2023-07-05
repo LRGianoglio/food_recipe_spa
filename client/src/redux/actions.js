@@ -4,15 +4,23 @@ import {  GET_RECIPES, GET_DIETS, SEARCH_BY_NAME, FILTER_BY, ORDER_BY } from "./
 
 const getRecipes = () => {
     return async function(dispatch) {
-        const recipes = (await axios.get("http://localhost:3001/recipes")).data;
-        dispatch({type: GET_RECIPES, payload: recipes});
+        try {
+            const recipes = (await axios.get("http://localhost:3001/recipes")).data;
+            dispatch({type: GET_RECIPES, payload: recipes});
+        } catch (error) {
+            alert(error.message)
+        }
     }
 }
 
 const getDiets = () => {
     return async function(dispatch) {
-        const diets = (await axios.get("http://localhost:3001/diets")).data;
-        dispatch({type: GET_DIETS, payload: diets});
+        try {
+            const diets = (await axios.get("http://localhost:3001/diets")).data;
+            dispatch({type: GET_DIETS, payload: diets});
+        } catch (error) {
+            alert(error.message)
+        }
     }
 }
 
@@ -20,8 +28,12 @@ const searchByName = (name) =>{
     return async function(dispatch){
         let query = "";
         if (name) query = "?name=" + name;
-        const recipes = (await axios.get(`http://localhost:3001/recipes${query}`)).data;
-        dispatch({type: SEARCH_BY_NAME, payload: recipes});
+        try {
+            const recipes = (await axios.get(`http://localhost:3001/recipes${query}`)).data;
+            dispatch({type: SEARCH_BY_NAME, payload: recipes});
+        } catch (error) {
+            alert(error.message)
+        }
     }
 }
 

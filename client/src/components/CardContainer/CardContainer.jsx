@@ -10,7 +10,10 @@ const CardContainer = () => {
   const [currentPage, setCurrentPage] = useState(0);
 
   const pageCount = Math.ceil(recipes.length / recipesPerPage);
-  const pages = Array.from({ length: pageCount }, (_, index) => index);
+  const pages = [];
+  for (let i = 0; i < pageCount; i++) {
+    pages.push(i);
+  }
 
   const startIndex = currentPage * recipesPerPage;
   const endIndex = startIndex + recipesPerPage;

@@ -33,6 +33,9 @@ const getRecipeById = async (id, source) =>{
                 }
               ]
             });
+
+    console.log(recipe);
+
     const formatedRecipe = {
       id: recipe.id,
       name: recipe.name,
@@ -40,8 +43,9 @@ const getRecipeById = async (id, source) =>{
       description: recipe.description,
       health_score: recipe.health_score,
       step_by_step: recipe.step_by_step,
-      diets: recipe.Diets.map(diet=>diet.name)
+      diets: recipe.Diets?.map(diet=>diet.name)
     }
+
     return formatedRecipe;
 }
 
