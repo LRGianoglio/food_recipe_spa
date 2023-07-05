@@ -1,0 +1,50 @@
+
+.navBar{
+    background-color: #448044;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    height: 6vh;
+    font-family: open_sanslight, sans-serif;
+    font-size: 18px;
+    text-shadow: black 1px 0 2px;
+}
+
+.linkDiv{
+    width: 16vw;
+    height: 100%;
+}
+
+.button{
+    width: 50.8%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: black 1px 0 2px;
+    border-right: 1px solid white;
+}
+
+.buttonPressed{
+    width: 49%;
+    height: 100%;
+    background: none;
+    border: none;
+    color: white;
+    font-size: 18px;
+    text-shadow: black 1px 0 2px;
+    border-right: 1px solid white;
+    background-color: #285728;
+}
+
+.button:hover{
+    background-color: #3d993d;
+    cursor: pointer;
+}
+
+.navBarPhrase{
+    color:white;
+    margin-left: 3vw;
+}
+

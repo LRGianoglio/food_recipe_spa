@@ -1,0 +1,13 @@
+const GET_RECIPES = "GET_RECIPES";
+const GET_DIETS = "GET_DIETS";
+const SEARCH_BY_NAME = "SEARCH_BY_NAME";
+const FILTER_BY = "FILTER_BY";
+const ORDER_BY = "ORDER_BY";
+
+export {
+    GET_RECIPES,
+    GET_DIETS,
+    SEARCH_BY_NAME,
+    FILTER_BY,
+    ORDER_BY
+};

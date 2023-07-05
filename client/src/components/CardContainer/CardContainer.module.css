@@ -1,0 +1,41 @@
+.mainDiv{
+    display: flex;
+    flex-direction: column;
+    width: 84vw;
+    background-image: url("https://images.pexels.com/photos/349609/pexels-photo-349609.jpeg?cs=srgb&dl=pexels-lukas-349609.jpg&fm=jpg");
+    background-size: contain;
+}
+
+.cardDiv{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.pagesDiv{
+    width: auto;
+    margin: auto;
+}
+
+.pagesDiv button{
+    padding: 10px;
+    min-width: 50px;
+    margin: 0 2px;
+    font-size: 1.1rem;
+    color: white;
+    border: 2px white solid;
+    background-color: #448044;
+    border-radius: 5px;
+    box-shadow: black 1px 0 7px;
+}
+
+.pagesDiv button:hover{
+    cursor: pointer;
+    background-color: #3d993d;
+}
+
+.pagesDiv button:disabled{
+    background-color: lightgrey;
+}

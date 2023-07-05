@@ -1,11 +1,12 @@
 import { NavBar } from "./components";
 import {Detail, Form, Home, Landing} from "./views";
-import { Route } from "react-router-dom";
+import { Route, useLocation } from "react-router-dom";
 
 function App() {
+  const location = useLocation().pathname;
   return (
     <>
-      <NavBar/>
+      {location!=="/"&&<NavBar/>}
 
       <Route exact path="/">
         <Landing/>
@@ -15,7 +16,7 @@ function App() {
         <Home/>
       </Route>
 
-      <Route path="/detail">
+      <Route path="/detail/:idRecipe">
         <Detail/>
       </Route>
 

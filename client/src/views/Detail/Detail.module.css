@@ -1,0 +1,114 @@
+.mainDiv{
+    display: flex;
+    flex-direction: row;
+    font-family: open_sanslight, sans-serif;
+}
+
+.descriptionDiv{
+    background-color: #7c9e7c;
+    width: 50vw;
+    height: 100vh;
+}
+
+.descriptionDiv img{
+    width: 70%;
+    position: relative;
+    left: 15%;
+    top: 2%;
+    border-radius: 20px;
+    box-shadow: black 1px 0 10px;
+}
+
+.stepsDiv{
+    background-color: lightcyan;
+    width: 50vw;
+    height: 100vh;
+    background-color:#1f2f1f
+}
+
+.hsDiv{
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin: 0 auto;
+    background-color: #448044;
+    border: 2px solid wheat;
+    width: 68%;
+    height: 60px;
+    border-radius: 0 0 10px 10px;
+    box-shadow: black 1px 0 10px;
+    color: white;
+    font-weight: 700;
+}
+
+.idP{
+    padding: 0 15px;
+    width: fit-content;
+    border-right: white 1px solid;
+}
+
+.hsP{
+    padding-left: 15px
+}
+
+.title{
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 0;
+    color: white;
+    font-size: 1.6rem;
+}
+
+.description{
+    font-size: .9rem;
+    line-height: 135%;
+    padding: 0 15px 0 15px;
+}
+
+.description a{
+    color: #285728;
+}
+
+.dietTitle{
+    margin-left: 10px;
+    color: white;
+    font-size: 1.3rem;
+    margin-bottom: 0;
+}
+
+.dietDiv {
+    border-top: #285728 1px double;
+    padding-left: 10px;
+}
+
+.dietList{
+    margin-top: 5px;
+    display: flex;
+    flex-direction: column;
+}
+
+.diet{
+    padding: 0 5px;
+    width: fit-content;
+    line-height: 135%;
+}
+
+.stepsTitle{
+    background-color: #448044;
+    width: 70%;
+    height: 5vh;
+    margin: 15px auto 0 auto;
+    text-align: center;
+    font-size: 2.4rem;
+    color: white;
+    border: 2px wheat solid;
+    border-radius: 15px;
+}
+
+.steps{
+    color: gainsboro;
+    line-height: 135%;
+    font-size: 1.4rem;
+    margin-bottom: 15px;
+}

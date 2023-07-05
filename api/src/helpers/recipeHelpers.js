@@ -12,11 +12,11 @@ const detailedRecipeFormatter = (recipe) => {
 }
 
 const recipeFormatter = (recipe) => {
-    console.log(recipe)
     return {
         id: recipe.id,
         name: recipe.title,
         img: recipe.image,
+        health_score: recipe.healthScore,
         diets: recipe.diets
     }
 }
